@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính Diện Tích Hình Chữ Nhật</title>
+</head>
+<body>
+
+<?php
+// Xử lý khi form được submit
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Kiểm tra xem số a và b đã được nhập hay chưa
+    if (empty($_POST["number_a"]) || empty($_POST["number_b"])) {
+        echo "Vui lòng nhập dữ liệu hợp lệ.";
+    } else {
+        $number_a = $_POST["number_a"];
+        $number_b = $_POST["number_b"];
+
+        // Kiểm tra xem số a và b có phải là số hay không
+        if (is_numeric($number_a) && is_numeric($number_b)) {
+            // Tính diện tích hình chữ nhật
+            $area = $number_a * $number_b;
+            echo "Diện tích hình chữ nhật là: " . $area;
+        } else {
+            echo "Vui lòng nhập giá trị số hợp lệ.";
+        }
+    }
+}
+?>
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    Số a: <input type="text" name="number_a"><br>
+    Số b: <input type="text" name="number_b"><br>
+    <input type="submit" value="Tính Diện Tích">
+</form>
+
+</body>
+</html>
